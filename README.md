@@ -1,7 +1,7 @@
 # Freebuff Attendance — daily check-in with streaks
 
 An external, self-contained proposal and working reference implementation for a
-daily check-in ("absensi") feature for Freebuff, built so the Freebuff team can
+daily attendance check-in feature for Freebuff, built so the Freebuff team can
 review, fork and adopt it into `freebuff.com`.
 
 - **Live preview:** https://freebuff-kehadiran-iymkz2-preview.freebuff.site
