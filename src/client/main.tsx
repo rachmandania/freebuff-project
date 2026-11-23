@@ -153,18 +153,6 @@ function App() {
     }
   }
 
-  /** Header entry point: dashboard when signed in, sign-up/sign-in otherwise. */
-  function enterDashboard() {
-    if (!signedIn) {
-      window.location.href = '/auth/freebuff/signin?returnTo=%2F'
-      return
-    }
-    document
-      .getElementById('checkin-title')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    document.querySelector<HTMLButtonElement>('.punch')?.focus({ preventScroll: true })
-  }
-
   async function changeMonth(delta: number) {
     if (!month || busy) return
     setBusy(true)
@@ -188,21 +176,9 @@ function App() {
   return (
     <main>
       <header className="topbar">
-        <div className="brand">
-          <span className="wordmark">
-            Attendance <span className="wordmark-dot">·</span> Freebuff
-          </span>
-          <button
-            type="button"
-            className="brand-action"
-            onClick={enterDashboard}
-          >
-            <span className="brand-action-icon" aria-hidden="true">
-              ✓
-            </span>
-            {signedIn ? 'Open dashboard' : 'Check in'}
-          </button>
-        </div>
+        <span className="wordmark">
+          Attendance <span className="wordmark-dot">·</span> Freebuff
+        </span>
         <div className="account">
           {session?.mode === 'local' && <span className="badge">Local preview</span>}
           {session?.user ? (
