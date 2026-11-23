@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "freebuff-kehadiran",
+  "name": "freebuff-attendance",
   "main": "src/worker/index.ts",
   "compatibility_date": "2026-11-11",
   "assets": {
@@ -10,6 +10,6 @@
   },
   // Only local data during development. Sites provisions its own database.
   "d1_databases": [
-    { "binding": "DB", "database_name": "freebuff-kehadiran", "database_id": "00000000-0000-0000-0000-000000000000" }
+    { "binding": "DB", "database_name": "freebuff-attendance", "database_id": "00000000-0000-0000-0000-000000000000" }
   ]
 }

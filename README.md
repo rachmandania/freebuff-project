@@ -1,4 +1,4 @@
-# Freebuff Kehadiran — daily check-in with streaks
+# Freebuff Attendance — daily check-in with streaks
 
 An external, self-contained proposal and working reference implementation for a
 daily check-in ("absensi") feature for Freebuff, built so the Freebuff team can
@@ -7,8 +7,6 @@ review, fork and adopt it into `freebuff.com`.
 - **Live preview:** https://freebuff-kehadiran-iymkz2-preview.freebuff.site
 - **Author:** Rachmandani Ardiyanto ([@rachmandania](https://github.com/rachmandania))
 - **Status:** prototype, sign-in and storage working on the preview environment
-
-> Ringkasan singkat dalam Bahasa Indonesia ada di bagian [Ringkasan](#ringkasan).
 
 ## Why
 
@@ -97,8 +95,8 @@ One route, `/`:
   line directly under it, the month calendar with `✓` / `★`, and the recap
   table. Previous / next month navigation.
 
-The streak line reads, for example: `Streak 3 hari · 4 hari lagi menuju ★`,
-`Streak 9 hari ★`, or `Belum ada streak · absen hari ini untuk mulai`.
+The streak line reads, for example: `Streak 3 days · 4 days to ★`,
+`Streak 9 days ★`, or `No streak yet · check in today to start`.
 
 No admin panel, no leave requests, no notifications. The layout leaves room for
 more cards later.
@@ -187,16 +185,6 @@ bun run build
 `src/worker/attendance.ts` holds the date, timezone and streak helpers;
 `src/worker/app.ts` the API; `src/worker/db.ts` the schema; `src/client/main.tsx`
 and `src/client/style.css` the screen.
-
-## Ringkasan
-
-Aplikasi absensi harian untuk Freebuff: sekali check-in per hari, jam dicatat
-server, tanggal mengikuti zona waktu masing-masing pengguna, dan streak ketat —
-satu hari tidak absen, hitungan mulai dari awal. Setiap 7 hari berturut-turut
-mendapat tanda ★; hari biasa mendapat ✓. Rekap ditampilkan sebagai tabel
-tanggal, jam dan zona waktu. Aplikasi ini tidak dapat menambah kuota Freebuff
-sungguhan: bagian itu harus diadopsi ke `freebuff.com` oleh tim Freebuff, dan
-repository ini menyediakan skema, aturan serta endpoint yang siap dipindahkan.
 
 ## Feedback
 

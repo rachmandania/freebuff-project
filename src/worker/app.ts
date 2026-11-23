@@ -91,15 +91,15 @@ export function createApp(
 
   app.use('/api/attendance/*', async (c, next) => {
     const user = await authenticate(c.req.raw, c.env)
-    if (!user) return c.json({ error: 'Silakan masuk terlebih dahulu.' }, 401)
+    if (!user) return c.json({ error: 'Sign in required.' }, 401)
     if (!['GET', 'HEAD'].includes(c.req.method)) {
       const origin = appOrigin(c.req.raw, c.env)
       if (!origin || !isSameOriginRequest(c.req.raw, origin))
-        return c.json({ error: 'Permintaan lintas situs ditolak.' }, 403)
+        return c.json({ error: 'Cross-origin request refused.' }, 403)
     }
     if (!c.env.DB)
       return c.json(
-        { error: 'Aplikasi ini masih disiapkan. Coba lagi nanti.' },
+        { error: 'This app is still being set up. Please try again later.' },
         503,
       )
     await ensureSchema(c.env.DB)
@@ -115,7 +115,7 @@ export function createApp(
     const nowMs = clock()
     const requested = c.req.query('month')
     if (requested && !MONTH.test(requested))
-      return c.json({ error: 'Format bulan harus YYYY-MM.' }, 400)
+      return c.json({ error: 'Month must be formatted as YYYY-MM.' }, 400)
     const month = requested || localDate(new Date(nowMs), timeZone).slice(0, 7)
     return c.json(
       await loadDashboard(c.get('db'), c.get('user').sub, month, timeZone, nowMs),
@@ -132,7 +132,7 @@ export function createApp(
       ('timeZone' in body &&
         (typeof body.timeZone !== 'string' || body.timeZone.length > 64))
     )
-      return c.json({ error: 'Permintaan absen tidak valid.' }, 400)
+      return c.json({ error: 'Invalid check-in request.' }, 400)
 
     const user = c.get('user')
     const timeZone = normalizeTimeZone(
@@ -182,7 +182,8 @@ export function createApp(
       nowMs,
     )
 
-    if (!inserted) return c.json({ error: 'Kamu sudah absen hari ini.', dashboard }, 409)
+    if (!inserted)
+      return c.json({ error: 'You have already checked in today.', dashboard }, 409)
 
     return c.json(
       {
@@ -199,7 +200,7 @@ export function createApp(
       : c.env.ASSETS.fetch(c.req.raw),
   )
   app.onError((_error, c) =>
-    c.json({ error: 'Terjadi kesalahan. Coba lagi.' }, 500),
+    c.json({ error: 'Something went wrong. Please try again.' }, 500),
   )
   return app
 }
