@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-labelledby="mockTitle mockDesc">
+  <title id="mockTitle">Freebuff check-in: sidebar entry and attendance dashboard</title>
+  <desc id="mockDesc">Left: the freebuff.com sidebar with a Check in row between the Freebuff wordmark and New chat, showing an 8-day streak. Right: the attendance dashboard with today's check-in, streak, calendar and recap table.</desc>
+
+  <rect width="1200" height="700" fill="#101110"/>
+
+  <g font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <text x="24" y="34" font-size="11" letter-spacing="1.6" fill="#7c847c">FREEBUFF.COM — LEFT SIDEBAR</text>
+    <text x="396" y="34" font-size="11" letter-spacing="1.6" fill="#7c847c">ATTENDANCE DASHBOARD</text>
+
+    <!-- Sidebar -->
+    <rect x="24" y="48" width="336" height="628" rx="20" fill="#191b19" stroke="#2c2f2c"/>
+
+    <text x="40" y="96" font-size="22" font-weight="700" fill="#f4f4f0" letter-spacing="-0.4">Freebuff</text>
+
+    <!-- New Check in row -->
+    <rect x="36" y="110" width="312" height="42" rx="11" fill="#16301f" stroke="#2f6b4f"/>
+    <circle cx="58" cy="131" r="10" fill="#35c98a"/>
+    <path d="M53 131l3.5 3.5L61 127" fill="none" stroke="#10231a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="76" y="136" font-size="14" font-weight="600" fill="#dcf9e9">Check in</text>
+    <rect x="230" y="119" width="106" height="24" rx="12" fill="#2b6a4c"/>
+    <text x="283" y="135" font-size="11" font-weight="600" fill="#ecfff5" text-anchor="middle">8-day streak</text>
+
+    <!-- Existing sidebar rows -->
+    <g fill="#d7dad3" font-size="13.5">
+      <rect x="44" y="170" width="14" height="14" rx="3" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <path d="M47 177l3 3 6-7" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <text x="76" y="182">New chat</text>
+
+      <rect x="44" y="208" width="14" height="14" rx="3" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <path d="M51 209v12M45 215h12" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <text x="76" y="220">New project</text>
+
+      <circle cx="51" cy="253" r="6" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <path d="M51 250v3.5l3 2" fill="none" stroke="#c9cec7" stroke-width="1.4" stroke-linecap="round"/>
+      <text x="76" y="256">Daily hours</text>
+
+      <rect x="44" y="284" width="14" height="11" rx="2.5" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <circle cx="54.5" cy="289.5" r="1.8" fill="#c9cec7"/>
+      <text x="76" y="294">Wallet</text>
+
+      <path d="M51 338l5-12 5 12" fill="none" stroke="#c9cec7" stroke-width="1.4"/>
+      <text x="76" y="332">Get 7x usage for $8</text>
+    </g>
+
+    <rect x="284" y="242" width="56" height="22" rx="11" fill="#14402c" stroke="#2f6b4f"/>
+    <text x="312" y="257" font-size="11" font-weight="600" fill="#5fe0a0" text-anchor="middle">7:11</text>
+    <rect x="272" y="278" width="68" height="22" rx="11" fill="#14402c" stroke="#2f6b4f"/>
+    <text x="306" y="293" font-size="11" font-weight="600" fill="#5fe0a0" text-anchor="middle">19 hrs</text>
+
+    <text x="40" y="376" font-size="10.5" letter-spacing="1.4" fill="#7c847c">PROJECTS</text>
+    <g fill="#d7dad3" font-size="13">
+      <text x="68" y="408">Check in. add ons.</text>
+      <text x="88" y="438" fill="#8b918a">Sambungkan Proyek</text>
+      <text x="68" y="468">GOOGLE script</text>
+      <text x="68" y="498">PORTFOLIO</text>
+      <text x="68" y="528">SCAN clip</text>
+    </g>
+    <g fill="none" stroke="#7c847c" stroke-width="1.3">
+      <path d="M44 402h12l1 9h-14z"/>
+      <path d="M44 462h12l1 9h-14z"/>
+      <path d="M44 492h12l1 9h-14z"/>
+      <path d="M44 522h12l1 9h-14z"/>
+    </g>
+
+    <line x1="40" y1="566" x2="344" y2="566" stroke="#2a2d2a"/>
+    <text x="44" y="606" font-size="13" fill="#d7dad3">Invite friends</text>
+    <text x="344" y="606" font-size="12" fill="#8b918a" text-anchor="end">0/3</text>
+
+    <text x="44" y="654" font-size="14">🔥</text>
+    <text x="70" y="654" font-size="13" fill="#d7dad3">8-day streak</text>
+    <g>
+      <rect x="170" y="644" width="11" height="11" rx="2.5" fill="#d9a533"/>
+      <rect x="187" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+      <rect x="204" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+      <rect x="221" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+      <rect x="238" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+      <rect x="255" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+      <rect x="272" y="644" width="11" height="11" rx="2.5" fill="#2f332f"/>
+    </g>
+
+    <!-- Dashboard -->
+    <rect x="396" y="48" width="780" height="628" rx="20" fill="#f6f3ea"/>
+
+    <text x="424" y="92" font-size="17" font-weight="650" fill="#1e2a24" letter-spacing="-0.4">Attendance <tspan fill="#b8862f">·</tspan> Freebuff</text>
+    <circle cx="986" cy="86" r="15" fill="#2c5f47"/>
+    <text x="986" y="91" font-size="12" font-weight="600" fill="#f6f3ea" text-anchor="middle">R</text>
+    <text x="1008" y="91" font-size="13" font-weight="550" fill="#1e2a24">Rachmandani</text>
+    <text x="1148" y="91" font-size="12" fill="#6d776d" text-anchor="end">Sign out</text>
+    <line x1="424" y1="112" x2="1148" y2="112" stroke="#e2ddcd"/>
+
+    <!-- Check-in card -->
+    <rect x="424" y="132" width="724" height="226" rx="20" fill="#fffdf7" stroke="#e2ddcd"/>
+    <text x="456" y="172" font-size="10.5" letter-spacing="2" fill="#6d776d">MONDAY, NOVEMBER 23, 2026</text>
+    <text x="456" y="212" font-size="30" font-weight="600" fill="#1e2a24" letter-spacing="-1">Hi, Rachmandani.</text>
+    <text x="456" y="240" font-size="13.5" fill="#5f6a60">Your attendance for today is recorded. See you tomorrow.</text>
+
+    <rect x="456" y="268" width="300" height="48" rx="16" fill="#dfe9dd"/>
+    <circle cx="484" cy="292" r="13" fill="#cbdcc5"/>
+    <path d="M478 292l4 4 8-9" fill="none" stroke="#5f7a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="508" y="297" font-size="14.5" font-weight="600" fill="#4d6a58">Checked in today</text>
+
+    <text x="456" y="340" font-size="13" fill="#4f5b50">Streak <tspan font-weight="700" fill="#1e2a24">1 day</tspan><tspan fill="#6d776d"> · 6 days to ★</tspan></text>
+    <g>
+      <rect x="456" y="348" width="26" height="6" rx="3" fill="#2c5f47"/>
+      <rect x="488" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+      <rect x="520" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+      <rect x="552" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+      <rect x="584" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+      <rect x="616" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+      <rect x="648" y="348" width="26" height="6" rx="3" fill="#e7e3d5"/>
+    </g>
+
+    <!-- Calendar card -->
+    <rect x="424" y="378" width="350" height="274" rx="20" fill="#fffdf7" stroke="#e2ddcd"/>
+    <text x="448" y="414" font-size="18" fill="#6d776d">‹</text>
+    <text x="599" y="414" font-size="14.5" font-weight="600" fill="#1e2a24" text-anchor="middle">November 2026</text>
+    <text x="750" y="414" font-size="18" fill="#6d776d" text-anchor="middle">›</text>
+
+    <g font-size="9.5" letter-spacing="0.8" fill="#6d776d" text-anchor="middle">
+      <text x="466" y="442">MON</text>
+      <text x="510" y="442">TUE</text>
+      <text x="554" y="442">WED</text>
+      <text x="598" y="442">THU</text>
+      <text x="642" y="442">FRI</text>
+      <text x="686" y="442">SAT</text>
+      <text x="730" y="442">SUN</text>
+    </g>
+
+    <g fill="#f8f6ee">
+      <rect x="448" y="452" width="36" height="36" rx="10"/><rect x="492" y="452" width="36" height="36" rx="10"/><rect x="536" y="452" width="36" height="36" rx="10"/><rect x="580" y="452" width="36" height="36" rx="10"/><rect x="624" y="452" width="36" height="36" rx="10"/><rect x="668" y="452" width="36" height="36" rx="10"/><rect x="712" y="452" width="36" height="36" rx="10"/>
+      <rect x="448" y="496" width="36" height="36" rx="10"/><rect x="492" y="496" width="36" height="36" rx="10"/><rect x="536" y="496" width="36" height="36" rx="10"/><rect x="580" y="496" width="36" height="36" rx="10"/><rect x="624" y="496" width="36" height="36" rx="10"/><rect x="668" y="496" width="36" height="36" rx="10"/><rect x="712" y="496" width="36" height="36" rx="10"/>
+      <rect x="492" y="540" width="36" height="36" rx="10"/><rect x="536" y="540" width="36" height="36" rx="10"/><rect x="580" y="540" width="36" height="36" rx="10"/><rect x="624" y="540" width="36" height="36" rx="10"/><rect x="668" y="540" width="36" height="36" rx="10"/><rect x="712" y="540" width="36" height="36" rx="10"/>
+    </g>
+
+    <g font-size="12" fill="#5a6459" text-anchor="middle">
+      <text x="466" y="475">9</text><text x="510" y="475">10</text><text x="554" y="475">11</text><text x="598" y="475">12</text><text x="642" y="475">13</text><text x="686" y="475">14</text><text x="730" y="475">15</text>
+      <text x="466" y="519">16</text><text x="510" y="519">17</text><text x="554" y="519">18</text><text x="598" y="519">19</text><text x="642" y="519">20</text><text x="686" y="519">21</text><text x="730" y="519">22</text>
+      <text x="510" y="563">24</text><text x="554" y="563">25</text><text x="598" y="563">26</text><text x="642" y="563">27</text><text x="686" y="563">28</text><text x="730" y="563">29</text>
+    </g>
+
+    <rect x="448" y="540" width="36" height="36" rx="10" fill="#dfe9dd" stroke="#2c5f47" stroke-width="1.6"/>
+    <text x="466" y="558" font-size="12" font-weight="600" fill="#2c4b39" text-anchor="middle">23</text>
+    <text x="466" y="570" font-size="9" fill="#2c5f47" text-anchor="middle">✓</text>
+
+    <g font-size="9.5" fill="#6d776d">
+      <text x="448" y="612" font-size="10" fill="#2c5f47">✓</text>
+      <text x="462" y="612">present</text>
+      <text x="520" y="612" font-size="10" fill="#b8862f">★</text>
+      <text x="534" y="612">7 days in a row</text>
+    </g>
+
+    <!-- Recap card -->
+    <rect x="790" y="378" width="358" height="274" rx="20" fill="#fffdf7" stroke="#e2ddcd"/>
+    <text x="814" y="414" font-size="15" font-weight="600" fill="#1e2a24">Attendance recap</text>
+    <text x="1124" y="414" font-size="10.5" fill="#6d776d" text-anchor="end">1 day recorded</text>
+
+    <g font-size="9" letter-spacing="1" fill="#6d776d">
+      <text x="814" y="442">DATE</text>
+      <text x="952" y="442">TIME</text>
+      <text x="1006" y="442">TIME ZONE</text>
+    </g>
+    <line x1="814" y1="452" x2="1124" y2="452" stroke="#e2ddcd"/>
+
+    <text x="814" y="478" font-size="12.5" fill="#1e2a24">23 Nov 2026</text>
+    <text x="952" y="478" font-size="12.5" font-weight="600" fill="#1e2a24">09:12</text>
+    <text x="1006" y="478" font-size="12" font-weight="600" fill="#1e2a24">GMT+7</text>
+    <text x="1006" y="493" font-size="9.5" fill="#6d776d">Asia/Jakarta</text>
+    <line x1="814" y1="506" x2="1124" y2="506" stroke="#eeeadf"/>
+
+    <text x="814" y="540" font-size="11" fill="#8a9184">Every check-in is timestamped on the server, with the</text>
+    <text x="814" y="556" font-size="11" fill="#8a9184">timezone in effect at that moment.</text>
+  </g>
+</svg>
