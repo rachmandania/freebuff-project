@@ -109,9 +109,8 @@ DST change.
 One route, `/`:
 
 - **Signed out** — the attendance screen is still visible (empty account card,
-  calendar, recap table). A compact **Check in** button sits directly under the
-  Freebuff wordmark in the header: signed in it opens the dashboard, signed out
-  it goes to Sign in with Freebuff, where an account can be created.
+  calendar, recap table). The check-in button goes to Sign in with Freebuff,
+  where an account can be created, then returns to `/`.
 - **Signed in** — account name in the header, the check-in button, the streak
   line directly under it, the month calendar with `✓` / `★`, and the recap
   table. Previous / next month navigation.
