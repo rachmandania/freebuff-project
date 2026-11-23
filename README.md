@@ -5,10 +5,9 @@ daily attendance check-in feature for Freebuff, built so the Freebuff team can
 review, fork and adopt it into `freebuff.com`.
 
 - **Preview (live now):** https://freebuff-kehadiran-iymkz2-preview.freebuff.site
-- **Production address:** https://freebuffcheckinfunction.freebuff.site (reserved in
-  Sites, not deployed yet)
+- **Production (live now):** https://freebuffcheckinfunction.freebuff.site
 - **Author:** Rachmandani Ardiyanto ([@rachmandania](https://github.com/rachmandania))
-- **Status:** prototype, sign-in and storage working on the preview environment
+- **Status:** prototype, sign-in and storage working on both environments
 - **Build thread:**
   [freebuff.com/?thread=8541eee2-a98a-46dd-a3bc-48e4f3ea9fd3](https://freebuff.com/?thread=8541eee2-a98a-46dd-a3bc-48e4f3ea9fd3)
   — the conversation this prototype was built in (open to the account that owns it,
