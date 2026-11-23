@@ -6,10 +6,10 @@ import './style.css'
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init)
   const body = (await response.json().catch(() => {
-    throw new Error('Tidak bisa menghubungi server. Coba lagi.')
+    throw new Error('Could not reach the server. Please try again.')
   })) as T & { error?: string }
   if (!response.ok)
-    throw new Error(body.error || 'Permintaan gagal. Coba lagi.')
+    throw new Error(body.error || 'The request failed. Please try again.')
   return body
 }
 
@@ -22,6 +22,8 @@ function browserTimeZone(): string {
 }
 
 const pad = (value: number) => String(value).padStart(2, '0')
+const plural = (count: number, word: string) =>
+  `${count} ${word}${count === 1 ? '' : 's'}`
 
 function shiftMonth(month: string, delta: number): string {
   const [year, index] = month.split('-').map(Number)
@@ -31,7 +33,7 @@ function shiftMonth(month: string, delta: number): string {
 
 function monthLabel(month: string): string {
   const [year, index] = month.split('-').map(Number)
-  return new Date(Date.UTC(year!, index! - 1, 1)).toLocaleDateString('id-ID', {
+  return new Date(Date.UTC(year!, index! - 1, 1)).toLocaleDateString('en-US', {
     month: 'long',
     year: 'numeric',
     timeZone: 'UTC',
@@ -40,10 +42,20 @@ function monthLabel(month: string): string {
 
 function dayLabel(date: string): string {
   const [year, month, day] = date.split('-').map(Number)
-  return new Date(Date.UTC(year!, month! - 1, day!)).toLocaleDateString('id-ID', {
+  return new Date(Date.UTC(year!, month! - 1, day!)).toLocaleDateString('en-US', {
     weekday: 'long',
-    day: 'numeric',
     month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
+function tableDate(date: string): string {
+  const [year, month, day] = date.split('-').map(Number)
+  return new Date(Date.UTC(year!, month! - 1, day!)).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
     year: 'numeric',
     timeZone: 'UTC',
   })
@@ -61,7 +73,7 @@ function calendarCells(month: string): (string | null)[] {
   return cells
 }
 
-const WEEKDAYS = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
+const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 function App() {
   const timeZone = useMemo(browserTimeZone, [])
@@ -96,7 +108,9 @@ function App() {
         if (current.user && current.database) await load()
       } catch (e) {
         if (live)
-          setError(e instanceof Error ? e.message : 'Gagal memuat data absensi.')
+          setError(
+            e instanceof Error ? e.message : 'Could not load your attendance.',
+          )
       } finally {
         if (live) setLoaded(true)
       }
@@ -133,7 +147,7 @@ function App() {
       setDashboard(result.dashboard)
       setMonth(result.dashboard.month)
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Absen gagal. Coba lagi.')
+      setError(e instanceof Error ? e.message : 'Could not check in. Try again.')
     } finally {
       setBusy(false)
     }
@@ -146,7 +160,7 @@ function App() {
     try {
       await load(shiftMonth(month, delta))
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Gagal memuat bulan itu.')
+      setError(e instanceof Error ? e.message : 'Could not load that month.')
     } finally {
       setBusy(false)
     }
@@ -154,6 +168,7 @@ function App() {
 
   const streak = dashboard?.streak ?? 0
   const hasStar = dashboard?.hasStar ?? false
+  const daysToStar = dashboard?.daysToStar ?? 7
   const filled = streak === 0 ? 0 : streak % 7 === 0 ? 7 : streak % 7
   const name = session?.user?.name || session?.user?.email || ''
   const initial = (name || 'F').trim().charAt(0).toUpperCase()
@@ -162,7 +177,7 @@ function App() {
     <main>
       <header className="topbar">
         <span className="wordmark">
-          Kehadiran <span className="wordmark-dot">·</span> Freebuff
+          Attendance <span className="wordmark-dot">·</span> Freebuff
         </span>
         <div className="account">
           {session?.mode === 'local' && <span className="badge">Local preview</span>}
@@ -174,13 +189,13 @@ function App() {
               <span className="account-name">{name || 'Signed in'}</span>
               <form method="post" action="/auth/freebuff/signout">
                 <button className="quiet" type="submit">
-                  Keluar
+                  Sign out
                 </button>
               </form>
             </>
           ) : session?.mode === 'freebuff' ? (
             <a className="button small" href="/auth/freebuff/signin?returnTo=%2F">
-              Masuk dengan Freebuff
+              Sign in with Freebuff
             </a>
           ) : null}
         </div>
@@ -193,23 +208,25 @@ function App() {
       )}
 
       {session && !signedIn && session.mode === 'setup' && (
-        <p className="notice">Aplikasi ini masih disiapkan. Coba lagi nanti.</p>
+        <p className="notice">
+          This app is still being set up. Please try again later.
+        </p>
       )}
 
       <div className="board">
         <section className="card checkin" aria-labelledby="checkin-title">
           <p className="eyebrow">
-            {dashboard ? dayLabel(dashboard.today) : 'Hari ini'}
+            {dashboard ? dayLabel(dashboard.today) : 'Today'}
           </p>
           <h1 id="checkin-title">
-            {signedIn && name ? `Halo, ${name.split(' ')[0]}.` : 'Absen harian.'}
+            {signedIn && name ? `Hi, ${name.split(' ')[0]}.` : 'Daily check-in.'}
           </h1>
           <p className="lede">
             {dashboard?.checkedInToday
-              ? 'Kehadiranmu hari ini sudah tercatat. Sampai jumpa besok.'
+              ? 'Your attendance for today is recorded. See you tomorrow.'
               : signedIn
-                ? 'Satu ketukan untuk mencatat kehadiran hari ini.'
-                : 'Masuk dengan akun Freebuff untuk mulai mencatat kehadiran.'}
+                ? "One tap to record today's attendance."
+                : 'Sign in with your Freebuff account to start recording attendance.'}
           </p>
 
           <button
@@ -223,30 +240,30 @@ function App() {
             </span>
             <span>
               {busy
-                ? 'Menyimpan…'
+                ? 'Saving…'
                 : dashboard?.checkedInToday
-                  ? 'Sudah absen hari ini'
-                  : 'Absen sekarang'}
+                  ? 'Checked in today'
+                  : 'Check in now'}
             </span>
           </button>
 
           <p className="streak" aria-live="polite">
             {!signedIn ? (
-              <>Belum punya akun? Akun dibuat saat kamu masuk pertama kali.</>
+              <>No account yet? One is created when you sign in for the first time.</>
             ) : streak === 0 ? (
-              <>Belum ada streak · absen hari ini untuk mulai.</>
+              <>No streak yet · check in today to start.</>
             ) : (
               <>
-                Streak <strong>{streak} hari</strong>
+                Streak <strong>{plural(streak, 'day')}</strong>
                 {hasStar && (
-                  <span className="star" aria-label="sudah 7 hari berturut-turut">
+                  <span className="star" aria-label="seven days in a row">
                     {' '}
                     ★
                   </span>
                 )}
                 <span className="streak-next">
                   {' '}
-                  · {dashboard?.daysToStar} hari lagi menuju ★
+                  · {plural(daysToStar, 'day')} to ★
                 </span>
               </>
             )}
@@ -267,7 +284,7 @@ function App() {
 
           {signedIn && dashboard && (
             <p className="meta">
-              Zona waktu: {dashboard.timeZoneLabel} · {dashboard.timeZone}
+              Time zone: {dashboard.timeZoneLabel} · {dashboard.timeZone}
             </p>
           )}
         </section>
@@ -279,17 +296,17 @@ function App() {
               className="quiet round"
               onClick={() => void changeMonth(-1)}
               disabled={!month || busy}
-              aria-label="Bulan sebelumnya"
+              aria-label="Previous month"
             >
               ‹
             </button>
-            <h2 id="month-title">{month ? monthLabel(month) : 'Kalender'}</h2>
+            <h2 id="month-title">{month ? monthLabel(month) : 'Calendar'}</h2>
             <button
               type="button"
               className="quiet round"
               onClick={() => void changeMonth(1)}
               disabled={!month || busy}
-              aria-label="Bulan berikutnya"
+              aria-label="Next month"
             >
               ›
             </button>
@@ -318,10 +335,10 @@ function App() {
                   )}
                   <span className="sr-only">
                     {record
-                      ? `hadir ${record.localTime}`
+                      ? `checked in at ${record.localTime}`
                       : isToday
-                        ? 'hari ini'
-                        : 'tidak hadir'}
+                        ? 'today'
+                        : 'no check-in'}
                   </span>
                 </span>
               )
@@ -329,10 +346,10 @@ function App() {
           </div>
           <div className="legend">
             <span>
-              <b className="mark">✓</b> hadir
+              <b className="mark">✓</b> present
             </span>
             <span>
-              <b className="mark gold">★</b> 7 hari berturut-turut
+              <b className="mark gold">★</b> 7 days in a row
             </span>
           </div>
         </section>
@@ -340,41 +357,38 @@ function App() {
 
       <section className="card recap" aria-labelledby="recap-title">
         <div className="recap-head">
-          <h2 id="recap-title">Rekap absensi</h2>
+          <h2 id="recap-title">Attendance recap</h2>
           <span className="count">
-            {dashboard ? `${dashboard.totalDays} hari tercatat` : '—'}
+            {dashboard ? `${plural(dashboard.totalDays, 'day')} recorded` : '—'}
           </span>
         </div>
         <table>
           <thead>
             <tr>
-              <th scope="col">Tanggal</th>
-              <th scope="col">Jam</th>
-              <th scope="col">Zona waktu</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Time zone</th>
             </tr>
           </thead>
           <tbody>
             {!loaded ? (
               <tr>
                 <td colSpan={3} className="empty">
-                  Memuat rekap…
+                  Loading recap…
                 </td>
               </tr>
             ) : records.length === 0 ? (
               <tr>
                 <td colSpan={3} className="empty">
                   {signedIn
-                    ? 'Belum ada catatan bulan ini.'
-                    : 'Masuk untuk melihat rekap absensimu.'}
+                    ? 'No records for this month yet.'
+                    : 'Sign in to see your attendance recap.'}
                 </td>
               </tr>
             ) : (
               records.map((record) => (
                 <tr key={record.localDate}>
-                  <td>
-                    {dayLabel(record.localDate).replace(/,.*/, '')}
-                    <span className="sub">{record.localDate.slice(0, 4)}</span>
-                  </td>
+                  <td>{tableDate(record.localDate)}</td>
                   <td className="mono">{record.localTime}</td>
                   <td>
                     <span className="tz">{record.timeZoneLabel}</span>
@@ -388,8 +402,8 @@ function App() {
       </section>
 
       <footer className="foot">
-        Prototipe absensi harian untuk Freebuff · streak ketat, satu hari bolong
-        dihitung ulang dari awal.
+        A daily attendance prototype for Freebuff · strict streak: miss a day and
+        the count restarts.
       </footer>
     </main>
   )
