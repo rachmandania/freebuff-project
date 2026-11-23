@@ -121,6 +121,27 @@ The streak line reads, for example: `Streak 3 days · 4 days to ★`,
 No admin panel, no leave requests, no notifications. The layout leaves room for
 more cards later.
 
+### Sidebar entry in freebuff.com
+
+The check-in entry belongs in the left sidebar, between the Freebuff wordmark and
+the **New chat** row — above the chat list, where it is the first thing a user
+sees after opening the app.
+
+- A compact row: check icon, the label **Check in**, and the current streak on the
+  right (for example `8-day streak`), so the streak is visible without opening
+  anything.
+- Signed in, today still open: the row checks in immediately and shows the result
+  in place.
+- Signed in, already checked in: the row opens the attendance dashboard, with the
+  star and the recap.
+- Signed out: the row opens account creation, then returns to the dashboard.
+- The row is a first-class action, never derived from sending a prompt. A failing
+  prompt must not be able to erase the streak.
+
+Because `freebuff.com` is a private app, this placement is a specification for
+the team to implement; the prototype in this repository demonstrates the same
+behaviour on its own page.
+
 ## Data model (Cloudflare D1)
 
 ```sql
