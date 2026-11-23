@@ -13,6 +13,12 @@ review, fork and adopt it into `freebuff.com`.
   — the conversation this prototype was built in (open to the account that owns it,
   and to anyone it is shared with)
 
+## Try it
+
+https://freebuffcheckinfunction.freebuff.site — open it, sign in with Freebuff
+and check in. It behaves the same for anyone with a Freebuff account, so it can
+be used as a live reference without running anything locally.
+
 ## Why
 
 Today attendance is implicit: a day counts only if a prompt is actually
