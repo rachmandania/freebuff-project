@@ -4,7 +4,9 @@ An external, self-contained proposal and working reference implementation for a
 daily attendance check-in feature for Freebuff, built so the Freebuff team can
 review, fork and adopt it into `freebuff.com`.
 
-- **Live preview:** https://freebuff-kehadiran-iymkz2-preview.freebuff.site
+- **Preview (live now):** https://freebuff-kehadiran-iymkz2-preview.freebuff.site
+- **Production address:** https://freebuffcheckinfunction.freebuff.site (reserved in
+  Sites, not deployed yet)
 - **Author:** Rachmandani Ardiyanto ([@rachmandania](https://github.com/rachmandania))
 - **Status:** prototype, sign-in and storage working on the preview environment
 
@@ -89,8 +91,9 @@ DST change.
 One route, `/`:
 
 - **Signed out** — the attendance screen is still visible (empty account card,
-  calendar, recap table). The check-in button goes to Sign in with Freebuff,
-  where an account can be created, then returns to `/`.
+  calendar, recap table). A compact **Check in** button sits directly under the
+  Freebuff wordmark in the header: signed in it opens the dashboard, signed out
+  it goes to Sign in with Freebuff, where an account can be created.
 - **Signed in** — account name in the header, the check-in button, the streak
   line directly under it, the month calendar with `✓` / `★`, and the recap
   table. Previous / next month navigation.
