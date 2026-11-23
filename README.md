@@ -12,10 +12,28 @@ review, fork and adopt it into `freebuff.com`.
 
 ## Why
 
-Freebuff users have no daily presence signal. The reward the community actually
-asks for is simple: show up 7 days in a row, get an extra hour of usage. That
-needs one small piece of state per user per day, and one screen that makes it
-pleasant to keep up.
+Today attendance is implicit: a day counts only if a prompt is actually
+submitted and delivered. That ties a reward streak to the reliability of an
+unrelated request.
+
+- When Freebuff is unhealthy, or a prompt fails on the user's side before it is
+  sent, nothing reaches the system. The day is lost even though the user showed
+  up and tried.
+- Losing a day destroys the whole streak, not just that day. One real report: a
+  streak of roughly 40 days disappeared because a single prompt never arrived.
+- The reward is real. Seven consecutive days unlock extra time in Freebuff, so a
+  silently lost day costs the user something they already earned.
+
+So attendance should be its own small, explicit, server-timestamped action,
+completely decoupled from prompt delivery:
+
+1. One check-in per local day, recorded whether or not any prompt was sent.
+2. Idempotent by design. Retrying after a client-side failure is safe, and a
+   duplicate attempt on the same local day is answered, not punished.
+3. The streak is derived only from those records, and breaks only when no
+   check-in exists for a local day.
+
+One day matters: a streak is what turns daily presence into extra usage time.
 
 The attendance screen is also the natural landing place for a first visit: if a
 visitor has no account yet, the check-in button leads straight into account
@@ -159,6 +177,10 @@ never supplies a date, a time or a streak value.
 5. Where the extra hour is granted today, read the streak and award the hour when
    it reaches a multiple of 7. The award belongs in the billing/quota code —
    this repository only reports the streak.
+6. Keep attendance out of the prompt pipeline. Do not infer a check-in from a
+   delivered prompt, and never let a failed prompt write or clear attendance:
+   prompt delivery and presence are different events with different failure
+   modes.
 
 ## Scope and honest limits
 
@@ -172,6 +194,8 @@ never supplies a date, a time or a streak value.
 
 - Weekly summary and a small "hours earned" history
 - Optional exceptions (holidays, approved leave) once the base rule is adopted
+- A documented repair path for days lost to a Freebuff-side outage, so a platform
+  incident cannot erase a long streak
 - Streak recovery or freeze, if the strict rule proves too punishing
 - Admin/export view for a team deployment
 
