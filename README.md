@@ -138,6 +138,10 @@ sees after opening the app.
 - The row is a first-class action, never derived from sending a prompt. A failing
   prompt must not be able to erase the streak.
 
+![Freebuff sidebar with the Check in row between the wordmark and New chat, beside the attendance dashboard](docs/mock.svg)
+
+Standalone version of the same mock: [`docs/mock.html`](docs/mock.html).
+
 Because `freebuff.com` is a private app, this placement is a specification for
 the team to implement; the prototype in this repository demonstrates the same
 behaviour on its own page.
