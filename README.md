@@ -9,6 +9,10 @@ review, fork and adopt it into `freebuff.com`.
   Sites, not deployed yet)
 - **Author:** Rachmandani Ardiyanto ([@rachmandania](https://github.com/rachmandania))
 - **Status:** prototype, sign-in and storage working on the preview environment
+- **Build thread:**
+  [freebuff.com/?thread=8541eee2-a98a-46dd-a3bc-48e4f3ea9fd3](https://freebuff.com/?thread=8541eee2-a98a-46dd-a3bc-48e4f3ea9fd3)
+  — the conversation this prototype was built in (open to the account that owns it,
+  and to anyone it is shared with)
 
 ## Why
 
@@ -213,6 +217,9 @@ never supplies a date, a time or a streak value.
 - No email, no push notifications, no timezone database of its own.
 - Authentication is identity only (Sign in with Freebuff); no passwords stored.
 - Attendance is stored per signed-in account and is never shared or public.
+- The build thread linked above is a private conversation; reading it needs the
+  account that owns it (or a share from that account). Nothing in this repository
+  depends on it.
 
 ## Roadmap ideas (not built)
 
