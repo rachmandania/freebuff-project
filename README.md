@@ -1,5 +1,9 @@
 # Freebuff Attendance — daily check-in with streaks
 
+> **This is a proposal, not an official Freebuff feature.** It is an external prototype
+> built so the Freebuff team can review, fork and adopt the idea — nothing here changes
+> `freebuff.com`, and no hour is granted by this app.
+
 An external, self-contained proposal and working reference implementation for a
 daily attendance check-in feature for Freebuff, built so the Freebuff team can
 review, fork and adopt it into `freebuff.com`.
